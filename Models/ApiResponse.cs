@@ -51,6 +51,11 @@ namespace YemenWhatsApp.Models
                 Timestamp = DateTime.Now
             };
         }
+
+        internal static ApiResponse<UserInfo> CreateSuccess(Data.UserInfo userInfos, string v)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public class AuthResponse
@@ -68,7 +73,7 @@ namespace YemenWhatsApp.Models
         public User? User { get; set; }
 
         [JsonProperty("expiresIn")]
-        public int ExpiresIn { get; set; } = 86400; // 24 ÓÇÚÉ
+        public int ExpiresIn { get; set; } = 86400;
 
         public AuthResponse(bool success = false, string message = "")
         {

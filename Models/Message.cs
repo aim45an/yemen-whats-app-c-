@@ -24,12 +24,12 @@ namespace YemenWhatsApp.Models
         public string Content { get; set; } = string.Empty;
 
         [MaxLength(50)]
-        public string? MessageType { get; set; } = "text"; // text, image, file, voice
+        public string? MessageType { get; set; } = "text";
 
         [MaxLength(500)]
         public string? FilePath { get; set; }
 
-        [MaxLength(50)]
+        [MaxLength(500)]
         public string? FileName { get; set; }
 
         public long? FileSize { get; set; }
@@ -41,15 +41,15 @@ namespace YemenWhatsApp.Models
         public DateTime Timestamp { get; set; } = DateTime.Now;
 
         [MaxLength(50)]
-        public string Status { get; set; } = "sent"; // sent, delivered, read
+        public string Status { get; set; } = "sent";
 
         public DateTime CreatedAt { get; set; } = DateTime.Now;
 
-        // Foreign keys (optional)
+        // Foreign keys
         public int? SenderId { get; set; }
         public int? ReceiverId { get; set; }
 
-        // Navigation properties (optional)
+        // Navigation properties
         [ForeignKey("SenderId")]
         public virtual User? SenderUser { get; set; }
 

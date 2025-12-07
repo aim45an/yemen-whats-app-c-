@@ -13,6 +13,8 @@ namespace YemenWhatsApp.Services
         private static User _currentUser;
         private static DateTime _sessionStartTime;
         private static bool _isAuthenticated = false;
+        private static bool _isGuest = false;
+        private static string _loginMethod = "local";
 
         public static event EventHandler SessionChanged;
         public static event EventHandler UserChanged;
@@ -89,17 +91,24 @@ namespace YemenWhatsApp.Services
 
         public static bool IsAuthenticated => _isAuthenticated && !string.IsNullOrEmpty(_currentUsername);
 
+        public static bool IsGuest => _isGuest;
+
+        public static string LoginMethod => _loginMethod;
+
         public static TimeSpan SessionDuration => DateTime.Now - _sessionStartTime;
+
+        public static object Instance { get; internal set; }
 
         public static void Initialize()
         {
             try
             {
-                //  Õ„Ì· «·≈⁄œ«œ«  «·„Õ›ÊŸ…
                 _serverUrl = LocalStorage.GetSetting("ServerUrl", "http://localhost:5000");
                 _currentUsername = LocalStorage.GetSetting("LastUsername", "");
                 _authToken = LocalStorage.GetSetting("AuthToken", "");
                 _isOnlineMode = LocalStorage.GetSettingBool("IsOnlineMode", true);
+                _isGuest = LocalStorage.GetSettingBool("IsGuest", false);
+                _loginMethod = LocalStorage.GetSetting("LoginMethod", "local");
 
                 _sessionStartTime = DateTime.Now;
                 _isAuthenticated = !string.IsNullOrEmpty(_authToken);
@@ -108,7 +117,7 @@ namespace YemenWhatsApp.Services
             }
             catch (Exception ex)
             {
-                ErrorHandler.LogError("›‘·  ÂÌ∆… «·Ã·”…", ex);
+                ErrorHandler.LogError("Œÿ√ ›Ì  ÂÌ∆… «·Ã·”…", ex);
             }
         }
 
@@ -118,9 +127,9 @@ namespace YemenWhatsApp.Services
             _authToken = null;
             _currentUser = null;
             _isAuthenticated = false;
+            _isGuest = false;
 
-            // ·« ‰„”Õ ServerUrl Ê IsOnlineMode ·√‰Â« ≈⁄œ«œ«  ⁄«„…
-
+            LocalStorage.SaveSetting("IsLoggedIn", "false");
             OnSessionChanged();
             ErrorHandler.LogInfo(" „ „”Õ «·Ã·”…");
         }
@@ -141,12 +150,14 @@ namespace YemenWhatsApp.Services
 
                 LocalStorage.SaveSetting("IsOnlineMode", _isOnlineMode.ToString());
                 LocalStorage.SaveSetting("ServerUrl", _serverUrl);
+                LocalStorage.SaveSetting("IsGuest", _isGuest.ToString());
+                LocalStorage.SaveSetting("LoginMethod", _loginMethod);
 
                 ErrorHandler.LogInfo(" „ Õ›Ÿ «·Ã·”…");
             }
             catch (Exception ex)
             {
-                ErrorHandler.LogError("›‘· Õ›Ÿ «·Ã·”…", ex);
+                ErrorHandler.LogError("Œÿ√ ›Ì Õ›Ÿ «·Ã·”…", ex);
             }
         }
 
@@ -154,14 +165,38 @@ namespace YemenWhatsApp.Services
         {
             return new Dictionary<string, object>
             {
-                ["Username"] = _currentUsername ?? "€Ì— „⁄—Ê›",
+                ["Username"] = _currentUsername ?? "€Ì— „Õœœ",
                 ["IsAuthenticated"] = _isAuthenticated,
                 ["SessionDuration"] = SessionDuration.ToString(@"hh\:mm\:ss"),
                 ["ServerUrl"] = _serverUrl,
                 ["IsOnlineMode"] = _isOnlineMode,
+                ["IsGuest"] = _isGuest,
+                ["LoginMethod"] = _loginMethod,
                 ["SessionStart"] = _sessionStartTime.ToString("yyyy-MM-dd HH:mm:ss"),
-                ["UserStatus"] = _currentUser?.Status ?? "€Ì— „⁄—Ê›"
+                ["UserStatus"] = _currentUser?.Status ?? "€Ì— „Õœœ"
             };
+        }
+
+        public static void Login(string username, string method = "local", bool isGuest = false)
+        {
+            CurrentUsername = username;
+            _isAuthenticated = true;
+            _loginMethod = method;
+            _isGuest = isGuest;
+            _sessionStartTime = DateTime.Now;
+
+            LocalStorage.SaveSetting("LoginMethod", method);
+            LocalStorage.SaveSetting("IsGuest", isGuest.ToString());
+
+            ErrorHandler.LogInfo($" „  ”ÃÌ· «·œŒÊ·: {username} (ÿ—Ìﬁ…: {method}, ÷Ì›: {isGuest})");
+        }
+
+        public static void Logout()
+        {
+            string oldUsername = _currentUsername;
+
+            ClearSession();
+            ErrorHandler.LogInfo($" „  ”ÃÌ· «·Œ—ÊÃ: {oldUsername}");
         }
 
         public static void UpdateUserStatus(string status)
@@ -191,6 +226,11 @@ namespace YemenWhatsApp.Services
             }
         }
 
+        public static string GenerateGuestUsername()
+        {
+            return $"÷Ì›_{new Random().Next(1000, 9999)}";
+        }
+
         private static void OnSessionChanged()
         {
             SessionChanged?.Invoke(null, EventArgs.Empty);
@@ -201,7 +241,6 @@ namespace YemenWhatsApp.Services
             UserChanged?.Invoke(null, EventArgs.Empty);
         }
 
-        // ÿ—ﬁ „”«⁄œ…
         public static bool IsValidUsername(string username)
         {
             return !string.IsNullOrWhiteSpace(username) &&
@@ -220,11 +259,6 @@ namespace YemenWhatsApp.Services
             {
                 return false;
             }
-        }
-
-        public static string GenerateGuestUsername()
-        {
-            return $"÷Ì›_{new Random().Next(1000, 9999)}";
         }
 
         public static void LogSessionActivity(string activity)

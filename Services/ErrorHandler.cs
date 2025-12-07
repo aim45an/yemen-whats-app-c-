@@ -105,7 +105,6 @@ namespace YemenWhatsApp.Services
             }
 
             MessageBox.Show(fullMessage, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
-
             LogError(message, ex);
         }
 

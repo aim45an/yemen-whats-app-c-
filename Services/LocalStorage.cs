@@ -50,7 +50,7 @@ namespace YemenWhatsApp.Services
                     else
                     {
                         _settings = new Dictionary<string, string>();
-                        SaveSettings(); // ≈‰‘«¡ „·› ÃœÌœ
+                        SaveSettings();
                     }
                 }
                 catch (Exception ex)
@@ -147,7 +147,6 @@ namespace YemenWhatsApp.Services
             }
         }
 
-        // ÿ—ﬁ „”«⁄œ… ·· Œ“Ì‰ «·„⁄ﬁœ
         public static void SaveObject<T>(string key, T obj)
         {
             try
@@ -179,7 +178,6 @@ namespace YemenWhatsApp.Services
             return defaultValue;
         }
 
-        // ÿ—ﬁ ·≈œ«—… „·›«  «·„” Œœ„
         public static string GetUserDataPath(string username)
         {
             string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
@@ -237,7 +235,6 @@ namespace YemenWhatsApp.Services
             }
         }
 
-        // ‰”Œ «Õ Ì«ÿÌ ··≈⁄œ«œ« 
         public static void BackupSettings()
         {
             try
@@ -258,7 +255,7 @@ namespace YemenWhatsApp.Services
                 if (File.Exists(backupFilePath))
                 {
                     File.Copy(backupFilePath, _settingsFilePath, true);
-                    LoadSettings(); // ≈⁄«œ…  Õ„Ì· «·≈⁄œ«œ« 
+                    LoadSettings();
                 }
             }
             catch (Exception ex)
@@ -267,7 +264,6 @@ namespace YemenWhatsApp.Services
             }
         }
 
-        //  ‰ŸÌ› «·„·›«  «·ﬁœÌ„…
         public static void CleanupOldFiles(int daysToKeep = 30)
         {
             try

@@ -47,55 +47,79 @@ namespace YemenWhatsApp.Data
                             ErrorHandler.LogInfo("✅ تم الاتصال بقاعدة البيانات");
                         }
 
-                        // التحقق من وجود الجداول
-                        var userTableExists = context.Database.ExecuteSqlRaw(@"
-                            IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='Users' AND xtype='U')
-                            BEGIN
-                                CREATE TABLE [dbo].[Users] (
-                                    [Id] [int] IDENTITY(1,1) NOT NULL,
-                                    [Username] [nvarchar](100) NOT NULL,
-                                    [ConnectionId] [nvarchar](500) NULL,
-                                    [IsOnline] [bit] NOT NULL,
-                                    [LastSeen] [datetime2](7) NOT NULL,
-                                    [Status] [nvarchar](100) NULL,
-                                    [Color] [nvarchar](50) NULL,
-                                    [Avatar] [nvarchar](20) NULL,
-                                    [Bio] [nvarchar](500) NULL,
-                                    [CreatedAt] [datetime2](7) NOT NULL,
-                                    [UpdatedAt] [datetime2](7) NOT NULL,
-                                    CONSTRAINT [PK_Users] PRIMARY KEY ([Id])
-                                );
-                                CREATE UNIQUE INDEX [IX_Users_Username] ON [dbo].[Users] ([Username]);
-                            END
-                        ");
+                        // التحقق من وجود الجداول وإنشاؤها إذا لزم الأمر
+                        try
+                        {
+                            context.Database.ExecuteSqlRaw(@"
+                                IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='Users' AND xtype='U')
+                                BEGIN
+                                    CREATE TABLE [dbo].[Users] (
+                                        [Id] [int] IDENTITY(1,1) NOT NULL,
+                                        [Username] [nvarchar](100) NOT NULL,
+                                        [Password] [nvarchar](500) NOT NULL,
+                                        [Email] [nvarchar](100) NULL,
+                                        [ConnectionId] [nvarchar](500) NULL,
+                                        [IsOnline] [bit] NOT NULL DEFAULT 0,
+                                        [LastSeen] [datetime2](7) NOT NULL,
+                                        [Status] [nvarchar](100) NULL,
+                                        [Color] [nvarchar](50) NULL,
+                                        [Avatar] [nvarchar](20) NULL,
+                                        [Bio] [nvarchar](500) NULL,
+                                        [ProfileImagePath] [nvarchar](500) NULL,
+                                        [ProfileThumbnailPath] [nvarchar](500) NULL,
+                                        [ProfileImageUpdatedAt] [datetime2](7) NULL,
+                                        [FailedLoginAttempts] [int] NOT NULL DEFAULT 0,
+                                        [LastFailedLogin] [datetime2](7) NULL,
+                                        [IsLocked] [bit] NOT NULL DEFAULT 0,
+                                        [LockedUntil] [datetime2](7) NULL,
+                                        [PhoneNumber] [nvarchar](20) NULL,
+                                        [IsVerified] [bit] NOT NULL DEFAULT 0,
+                                        [CreatedAt] [datetime2](7) NOT NULL,
+                                        [UpdatedAt] [datetime2](7) NOT NULL,
+                                        [LastActivity] [datetime2](7) NULL,
+                                        CONSTRAINT [PK_Users] PRIMARY KEY ([Id])
+                                    );
+                                    CREATE UNIQUE INDEX [IX_Users_Username] ON [dbo].[Users] ([Username]);
+                                    CREATE UNIQUE INDEX [IX_Users_Email] ON [dbo].[Users] ([Email]) WHERE [Email] IS NOT NULL;
+                                    CREATE INDEX [IX_Users_IsOnline] ON [dbo].[Users] ([IsOnline]);
+                                    CREATE INDEX [IX_Users_LastSeen] ON [dbo].[Users] ([LastSeen]);
+                                END
+                            ");
 
-                        var messagesTableExists = context.Database.ExecuteSqlRaw(@"
-                            IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='Messages' AND xtype='U')
-                            BEGIN
-                                CREATE TABLE [dbo].[Messages] (
-                                    [Id] [int] IDENTITY(1,1) NOT NULL,
-                                    [Sender] [nvarchar](100) NOT NULL,
-                                    [Receiver] [nvarchar](100) NOT NULL,
-                                    [Content] [nvarchar](MAX) NOT NULL,
-                                    [MessageType] [nvarchar](50) NULL,
-                                    [FilePath] [nvarchar](500) NULL,
-                                    [FileName] [nvarchar](500) NULL,
-                                    [FileSize] [bigint] NULL,
-                                    [IsPrivate] [bit] NOT NULL,
-                                    [IsRead] [bit] NOT NULL,
-                                    [Timestamp] [datetime2](7) NOT NULL,
-                                    [Status] [nvarchar](50) NULL,
-                                    [CreatedAt] [datetime2](7) NOT NULL,
-                                    [SenderId] [int] NULL,
-                                    [ReceiverId] [int] NULL,
-                                    CONSTRAINT [PK_Messages] PRIMARY KEY ([Id])
-                                );
-                                CREATE INDEX [IX_Messages_Sender] ON [dbo].[Messages] ([Sender]);
-                                CREATE INDEX [IX_Messages_Receiver] ON [dbo].[Messages] ([Receiver]);
-                                CREATE INDEX [IX_Messages_Timestamp] ON [dbo].[Messages] ([Timestamp]);
-                                CREATE INDEX [IX_Messages_IsPrivate] ON [dbo].[Messages] ([IsPrivate]);
-                            END
-                        ");
+                            context.Database.ExecuteSqlRaw(@"
+                                IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='Messages' AND xtype='U')
+                                BEGIN
+                                    CREATE TABLE [dbo].[Messages] (
+                                        [Id] [int] IDENTITY(1,1) NOT NULL,
+                                        [Sender] [nvarchar](100) NOT NULL,
+                                        [Receiver] [nvarchar](100) NOT NULL,
+                                        [Content] [nvarchar](MAX) NOT NULL,
+                                        [MessageType] [nvarchar](50) NULL,
+                                        [FilePath] [nvarchar](500) NULL,
+                                        [FileName] [nvarchar](500) NULL,
+                                        [FileSize] [bigint] NULL,
+                                        [IsPrivate] [bit] NOT NULL,
+                                        [IsRead] [bit] NOT NULL,
+                                        [Timestamp] [datetime2](7) NOT NULL,
+                                        [Status] [nvarchar](50) NULL,
+                                        [CreatedAt] [datetime2](7) NOT NULL,
+                                        [SenderId] [int] NULL,
+                                        [ReceiverId] [int] NULL,
+                                        CONSTRAINT [PK_Messages] PRIMARY KEY ([Id])
+                                    );
+                                    CREATE INDEX [IX_Messages_Sender] ON [dbo].[Messages] ([Sender]);
+                                    CREATE INDEX [IX_Messages_Receiver] ON [dbo].[Messages] ([Receiver]);
+                                    CREATE INDEX [IX_Messages_Timestamp] ON [dbo].[Messages] ([Timestamp]);
+                                    CREATE INDEX [IX_Messages_IsPrivate] ON [dbo].[Messages] ([IsPrivate]);
+                                    CREATE INDEX [IX_Messages_Sender_Receiver_Timestamp] ON [dbo].[Messages] ([Sender], [Receiver], [Timestamp]);
+                                    CREATE INDEX [IX_Messages_Receiver_Sender_Timestamp] ON [dbo].[Messages] ([Receiver], [Sender], [Timestamp]);
+                                END
+                            ");
+                        }
+                        catch (Exception sqlEx)
+                        {
+                            ErrorHandler.LogError("❌ فشل إنشاء الجداول", sqlEx);
+                        }
 
                         // إضافة البيانات الأولية
                         SeedInitialData(context);
@@ -122,13 +146,16 @@ namespace YemenWhatsApp.Data
                     var systemUser = new User
                     {
                         Username = "النظام",
+                        Password = HashPassword("system123"),
                         Status = "نظام",
                         IsOnline = false,
                         Color = "#808080",
                         Avatar = "🤖",
-                        Bio = "حساب النظام - Yemen WhatsApp"
+                        Bio = "حساب النظام - Yemen WhatsApp",
+                        IsVerified = true
                     };
                     context.Users.Add(systemUser);
+                    context.SaveChanges();
                 }
 
                 // التحقق من وجود رسالة ترحيبية
@@ -141,18 +168,28 @@ namespace YemenWhatsApp.Data
                         Content = "🎉 مرحباً بكم في Yemen WhatsApp Desktop! 💬\n\nيمكنكم الآن الدردشة مع الأصدقاء والزملاء بشكل آمن وسريع.\n\n🇾🇪 تطوير يمني ١٠٠٪",
                         IsPrivate = false,
                         Status = "sent",
-                        Timestamp = DateTime.Now.AddMinutes(-5)
+                        Timestamp = DateTime.Now.AddMinutes(-5),
+                        CreatedAt = DateTime.Now
                     };
                     context.Messages.Add(welcomeMessage);
+                    context.SaveChanges();
                 }
 
-                // حفظ التغييرات
-                context.SaveChanges();
                 ErrorHandler.LogInfo("✅ تم إضافة البيانات الأولية");
             }
             catch (Exception ex)
             {
                 ErrorHandler.LogError("❌ فشل إضافة البيانات الأولية", ex);
+            }
+        }
+
+        private static string HashPassword(string password)
+        {
+            using (var sha256 = System.Security.Cryptography.SHA256.Create())
+            {
+                var bytes = System.Text.Encoding.UTF8.GetBytes(password);
+                var hash = sha256.ComputeHash(bytes);
+                return Convert.ToBase64String(hash);
             }
         }
 
@@ -167,7 +204,6 @@ namespace YemenWhatsApp.Data
                         $"YemenChatDB_Backup_{DateTime.Now:yyyyMMdd_HHmmss}.bak");
                 }
 
-                // إنشاء مجلد النسخ الاحتياطي
                 string backupDir = Path.GetDirectoryName(backupPath);
                 if (!Directory.Exists(backupDir))
                 {
@@ -176,7 +212,6 @@ namespace YemenWhatsApp.Data
 
                 using (var context = new ChatDbContext())
                 {
-                    // نسخ احتياطي بسيط (في تطبيق حقيقي تستخدم SQL Backup)
                     var backupQuery = $@"
                         BACKUP DATABASE YemenChatDB 
                         TO DISK = '{backupPath.Replace("'", "''")}'
@@ -186,7 +221,6 @@ namespace YemenWhatsApp.Data
                     ";
 
                     await context.Database.ExecuteSqlRawAsync(backupQuery);
-
                     ErrorHandler.LogInfo($"✅ تم إنشاء نسخة احتياطية في: {backupPath}");
                 }
             }
@@ -250,14 +284,13 @@ namespace YemenWhatsApp.Data
                     var cutoffDate = DateTime.Now.AddDays(-daysToKeep);
 
                     var oldMessages = await context.Messages
-                        .Where(m => m.Timestamp < cutoffDate)
+                        .Where(m => m.Timestamp < cutoffDate && !m.IsPrivate)
                         .ToListAsync();
 
                     if (oldMessages.Any())
                     {
                         context.Messages.RemoveRange(oldMessages);
                         await context.SaveChangesAsync();
-
                         ErrorHandler.LogInfo($"✅ تم حذف {oldMessages.Count} رسالة أقدم من {daysToKeep} يوم");
                     }
                 }
@@ -271,11 +304,13 @@ namespace YemenWhatsApp.Data
 
     public class DatabaseInfo
     {
+        internal int OnlineCount;
+
         public int UserCount { get; set; }
         public int MessageCount { get; set; }
         public int OnlineUsers { get; set; }
         public DateTime? LastMessageTime { get; set; }
-        public long DatabaseSize { get; set; } // بالبايت
+        public long DatabaseSize { get; set; }
         public bool IsConnected { get; set; }
 
         public string DatabaseSizeFormatted

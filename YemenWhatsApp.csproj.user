@@ -4,10 +4,10 @@
     <EnableSecurityDebugging>false</EnableSecurityDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Update="Form1.cs">
+    <Compile Update="Forms\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Form2.cs">
+    <Compile Update="Forms\Form2.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
