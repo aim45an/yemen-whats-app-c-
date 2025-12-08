@@ -1,17 +1,9 @@
-﻿
-namespace YemenWhatsApp
+﻿namespace YemenWhatsApp
 {
     partial class Form2
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -23,168 +15,320 @@ namespace YemenWhatsApp
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            groupBox1 = new GroupBox();
-            txtLoginPassword = new TextBox();
-            txtLoginEmail = new TextBox();
-            label2 = new Label();
-            label1 = new Label();
-            txtName = new TextBox();
-            label3 = new Label();
-            btnLogin = new Button();
-            linkLabel1 = new LinkLabel();
-            label4 = new Label();
-            groupBox1.SuspendLayout();
-            SuspendLayout();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
+            this.picLogo = new System.Windows.Forms.PictureBox();
+            this.lblTitle = new System.Windows.Forms.Label();
+            this.lblUsername = new System.Windows.Forms.Label();
+            this.txtUsername = new System.Windows.Forms.TextBox();
+            this.lblPassword = new System.Windows.Forms.Label();
+            this.txtPassword = new System.Windows.Forms.TextBox();
+            this.chkRememberMe = new System.Windows.Forms.CheckBox();
+            this.btnLogin = new System.Windows.Forms.Button();
+            this.btnGuest = new System.Windows.Forms.Button();
+            this.btnRegister = new System.Windows.Forms.Button();
+            this.btnSettings = new System.Windows.Forms.Button();
+            this.btnExit = new System.Windows.Forms.Button();
+            this.lblVersion = new System.Windows.Forms.Label();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.linkForgotPassword = new System.Windows.Forms.LinkLabel();
+            this.linkHelp = new System.Windows.Forms.LinkLabel();
+            this.cmbLanguage = new System.Windows.Forms.ComboBox();
+            this.btnQuickLogin = new System.Windows.Forms.Button();
+            this.lblQuickMode = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
+            this.SuspendLayout();
             // 
-            // groupBox1
+            // picLogo
             // 
-            groupBox1.BackColor = Color.FromArgb(224, 224, 224);
-            groupBox1.Controls.Add(label4);
-            groupBox1.Controls.Add(linkLabel1);
-            groupBox1.Controls.Add(btnLogin);
-            groupBox1.Controls.Add(txtLoginPassword);
-            groupBox1.Controls.Add(txtLoginEmail);
-            groupBox1.Controls.Add(txtName);
-            groupBox1.Controls.Add(label2);
-            groupBox1.Controls.Add(label1);
-            groupBox1.Controls.Add(label3);
-            groupBox1.Location = new Point(176, 60);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(390, 311);
-            groupBox1.TabIndex = 0;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "تسجيل الدخول";
+            this.picLogo.Location = new System.Drawing.Point(150, 30);
+            this.picLogo.Name = "picLogo";
+            this.picLogo.Size = new System.Drawing.Size(150, 150);
+            this.picLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picLogo.TabIndex = 0;
+            this.picLogo.TabStop = false;
             // 
-            // txtLoginPassword
+            // lblTitle
             // 
-            txtLoginPassword.BackColor = Color.FromArgb(192, 255, 192);
-            txtLoginPassword.Location = new Point(117, 190);
-            txtLoginPassword.Name = "txtLoginPassword";
-            txtLoginPassword.PasswordChar = '*';
-            txtLoginPassword.Size = new Size(241, 27);
-            txtLoginPassword.TabIndex = 3;
+            this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.lblTitle.Location = new System.Drawing.Point(75, 190);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(300, 40);
+            this.lblTitle.TabIndex = 1;
+            this.lblTitle.Text = "🇾🇪 Yemen WhatsApp";
+            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // txtLoginEmail
+            // lblUsername
             // 
-            txtLoginEmail.BackColor = Color.FromArgb(192, 255, 192);
-            txtLoginEmail.Location = new Point(117, 134);
-            txtLoginEmail.Name = "txtLoginEmail";
-            txtLoginEmail.Size = new Size(241, 27);
-            txtLoginEmail.TabIndex = 2;
-            txtLoginEmail.TextChanged += textBox1_TextChanged;
+            this.lblUsername.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblUsername.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblUsername.Location = new System.Drawing.Point(50, 250);
+            this.lblUsername.Name = "lblUsername";
+            this.lblUsername.Size = new System.Drawing.Size(100, 25);
+            this.lblUsername.TabIndex = 2;
+            this.lblUsername.Text = "اسم المستخدم:";
             // 
-            // label2
+            // txtUsername
             // 
-            label2.AutoSize = true;
-            label2.BackColor = Color.FromArgb(192, 255, 192);
-            label2.Location = new Point(19, 190);
-            label2.Name = "label2";
-            label2.Size = new Size(80, 20);
-            label2.TabIndex = 1;
-            label2.Text = "كلمة المرور";
-            label2.Click += label2_Click;
+            this.txtUsername.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtUsername.Location = new System.Drawing.Point(160, 250);
+            this.txtUsername.MaxLength = 50;
+            this.txtUsername.Name = "txtUsername";
+            this.txtUsername.Size = new System.Drawing.Size(220, 27);
+            this.txtUsername.TabIndex = 1;
             // 
-            // label1
+            // lblPassword
             // 
-            label1.AutoSize = true;
-            label1.BackColor = Color.FromArgb(192, 255, 192);
-            label1.Location = new Point(6, 137);
-            label1.Name = "label1";
-            label1.Size = new Size(109, 20);
-            label1.TabIndex = 0;
-            label1.Text = "البريد الإلكتروني";
+            this.lblPassword.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblPassword.Location = new System.Drawing.Point(50, 290);
+            this.lblPassword.Name = "lblPassword";
+            this.lblPassword.Size = new System.Drawing.Size(100, 25);
+            this.lblPassword.TabIndex = 4;
+            this.lblPassword.Text = "كلمة المرور:";
             // 
-            // txtName
+            // txtPassword
             // 
-            txtName.BackColor = Color.FromArgb(192, 255, 192);
-            txtName.Location = new Point(117, 79);
-            txtName.Name = "txtName";
-            txtName.Size = new Size(241, 27);
-            txtName.TabIndex = 4;
-            txtName.TextChanged += txtName_TextChanged;
+            this.txtPassword.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtPassword.Location = new System.Drawing.Point(160, 290);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '•';
+            this.txtPassword.Size = new System.Drawing.Size(220, 27);
+            this.txtPassword.TabIndex = 2;
+            this.txtPassword.UseSystemPasswordChar = true;
             // 
-            // label3
+            // chkRememberMe
             // 
-            label3.AutoSize = true;
-            label3.BackColor = Color.FromArgb(192, 255, 192);
-            label3.Location = new Point(29, 86);
-            label3.Name = "label3";
-            label3.Size = new Size(48, 20);
-            label3.TabIndex = 0;
-            label3.Text = "الاسم ";
+            this.chkRememberMe.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.chkRememberMe.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.chkRememberMe.Location = new System.Drawing.Point(160, 330);
+            this.chkRememberMe.Name = "chkRememberMe";
+            this.chkRememberMe.Size = new System.Drawing.Size(150, 25);
+            this.chkRememberMe.TabIndex = 3;
+            this.chkRememberMe.Text = "تذكر بيانات الدخول";
+            this.chkRememberMe.UseVisualStyleBackColor = true;
             // 
             // btnLogin
             // 
-            btnLogin.BackColor = Color.Lime;
-            btnLogin.Location = new Point(19, 276);
-            btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(352, 29);
-            btnLogin.TabIndex = 4;
-            btnLogin.Text = "تسجيل الدخول";
-            btnLogin.UseVisualStyleBackColor = false;
-            btnLogin.Click += btnLogin_Click;
+            this.btnLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogin.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnLogin.ForeColor = System.Drawing.Color.White;
+            this.btnLogin.Location = new System.Drawing.Point(50, 370);
+            this.btnLogin.Name = "btnLogin";
+            this.btnLogin.Size = new System.Drawing.Size(330, 40);
+            this.btnLogin.TabIndex = 4;
+            this.btnLogin.Text = "تسجيل الدخول";
+            this.btnLogin.UseVisualStyleBackColor = false;
             // 
-            // linkLabel1
+            // btnGuest
             // 
-            linkLabel1.AutoSize = true;
-            linkLabel1.Location = new Point(123, 240);
-            linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(121, 20);
-            linkLabel1.TabIndex = 9;
-            linkLabel1.TabStop = true;
-            linkLabel1.Text = "نسيت كلمة المرور";
+            this.btnGuest.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.btnGuest.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGuest.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnGuest.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnGuest.Location = new System.Drawing.Point(50, 420);
+            this.btnGuest.Name = "btnGuest";
+            this.btnGuest.Size = new System.Drawing.Size(160, 35);
+            this.btnGuest.TabIndex = 5;
+            this.btnGuest.Text = "الدخول كضيف";
+            this.btnGuest.UseVisualStyleBackColor = false;
             // 
-            // label4
+            // btnRegister
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label4.ForeColor = Color.MediumSeaGreen;
-            label4.Location = new Point(77, 37);
-            label4.Name = "label4";
-            label4.Size = new Size(259, 28);
-            label4.TabIndex = 10;
-            label4.Text = "تسجيل الدخول الى يمن وتس اب";
+            this.btnRegister.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(175)))), ((int)(((byte)(80)))));
+            this.btnRegister.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRegister.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnRegister.ForeColor = System.Drawing.Color.White;
+            this.btnRegister.Location = new System.Drawing.Point(220, 420);
+            this.btnRegister.Name = "btnRegister";
+            this.btnRegister.Size = new System.Drawing.Size(160, 35);
+            this.btnRegister.TabIndex = 6;
+            this.btnRegister.Text = "إنشاء حساب جديد";
+            this.btnRegister.UseVisualStyleBackColor = false;
+            // 
+            // btnSettings
+            // 
+            this.btnSettings.BackColor = System.Drawing.Color.Transparent;
+            this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSettings.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnSettings.ForeColor = System.Drawing.Color.Gray;
+            this.btnSettings.Location = new System.Drawing.Point(20, 20);
+            this.btnSettings.Name = "btnSettings";
+            this.btnSettings.Size = new System.Drawing.Size(40, 40);
+            this.btnSettings.TabIndex = 7;
+            this.btnSettings.Text = "⚙️";
+            this.btnSettings.UseVisualStyleBackColor = false;
+            // 
+            // btnExit
+            // 
+            this.btnExit.BackColor = System.Drawing.Color.Transparent;
+            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExit.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnExit.ForeColor = System.Drawing.Color.Gray;
+            this.btnExit.Location = new System.Drawing.Point(390, 20);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(40, 40);
+            this.btnExit.TabIndex = 8;
+            this.btnExit.Text = "✕";
+            this.btnExit.UseVisualStyleBackColor = false;
+            // 
+            // lblVersion
+            // 
+            this.lblVersion.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblVersion.ForeColor = System.Drawing.Color.Gray;
+            this.lblVersion.Location = new System.Drawing.Point(10, 510);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(100, 20);
+            this.lblVersion.TabIndex = 9;
+            this.lblVersion.Text = "الإصدار 2.0.0";
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblStatus.ForeColor = System.Drawing.Color.Gray;
+            this.lblStatus.Location = new System.Drawing.Point(300, 510);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(140, 20);
+            this.lblStatus.TabIndex = 10;
+            this.lblStatus.Text = "جاري الاتصال...";
+            this.lblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblStatus.Visible = false;
+            // 
+            // progressBar
+            // 
+            this.progressBar.Location = new System.Drawing.Point(50, 470);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(330, 10);
+            this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.progressBar.TabIndex = 11;
+            this.progressBar.Visible = false;
+            // 
+            // linkForgotPassword
+            // 
+            this.linkForgotPassword.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.linkForgotPassword.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.linkForgotPassword.Location = new System.Drawing.Point(50, 485);
+            this.linkForgotPassword.Name = "linkForgotPassword";
+            this.linkForgotPassword.Size = new System.Drawing.Size(120, 20);
+            this.linkForgotPassword.TabIndex = 12;
+            this.linkForgotPassword.TabStop = true;
+            this.linkForgotPassword.Text = "نسيت كلمة المرور؟";
+            // 
+            // linkHelp
+            // 
+            this.linkHelp.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.linkHelp.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.linkHelp.Location = new System.Drawing.Point(180, 485);
+            this.linkHelp.Name = "linkHelp";
+            this.linkHelp.Size = new System.Drawing.Size(60, 20);
+            this.linkHelp.TabIndex = 13;
+            this.linkHelp.TabStop = true;
+            this.linkHelp.Text = "المساعدة";
+            // 
+            // cmbLanguage
+            // 
+            this.cmbLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbLanguage.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cmbLanguage.FormattingEnabled = true;
+            this.cmbLanguage.Items.AddRange(new object[] {
+            "العربية",
+            "English"});
+            this.cmbLanguage.Location = new System.Drawing.Point(260, 485);
+            this.cmbLanguage.Name = "cmbLanguage";
+            this.cmbLanguage.Size = new System.Drawing.Size(120, 23);
+            this.cmbLanguage.TabIndex = 14;
+            // 
+            // btnQuickLogin
+            // 
+            this.btnQuickLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(193)))), ((int)(((byte)(7)))));
+            this.btnQuickLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnQuickLogin.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnQuickLogin.ForeColor = System.Drawing.Color.Black;
+            this.btnQuickLogin.Location = new System.Drawing.Point(50, 520);
+            this.btnQuickLogin.Name = "btnQuickLogin";
+            this.btnQuickLogin.Size = new System.Drawing.Size(100, 25);
+            this.btnQuickLogin.TabIndex = 15;
+            this.btnQuickLogin.Text = "⚡ دخول سريع";
+            this.btnQuickLogin.UseVisualStyleBackColor = false;
+            this.btnQuickLogin.Visible = false;
+            // 
+            // lblQuickMode
+            // 
+            this.lblQuickMode.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblQuickMode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.lblQuickMode.Location = new System.Drawing.Point(160, 523);
+            this.lblQuickMode.Name = "lblQuickMode";
+            this.lblQuickMode.Size = new System.Drawing.Size(220, 20);
+            this.lblQuickMode.TabIndex = 16;
+            this.lblQuickMode.Text = "لتسريع الدخول: أدخل اسمك واضغط Enter";
+            this.lblQuickMode.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // Form2
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 543);
-            Controls.Add(groupBox1);
-            Name = "Form2";
-            Text = "Form2";
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
-            ResumeLayout(false);
-        }
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(450, 550);
+            this.Controls.Add(this.lblQuickMode);
+            this.Controls.Add(this.btnQuickLogin);
+            this.Controls.Add(this.cmbLanguage);
+            this.Controls.Add(this.linkHelp);
+            this.Controls.Add(this.linkForgotPassword);
+            this.Controls.Add(this.progressBar);
+            this.Controls.Add(this.lblStatus);
+            this.Controls.Add(this.lblVersion);
+            this.Controls.Add(this.btnExit);
+            this.Controls.Add(this.btnSettings);
+            this.Controls.Add(this.btnRegister);
+            this.Controls.Add(this.btnGuest);
+            this.Controls.Add(this.btnLogin);
+            this.Controls.Add(this.chkRememberMe);
+            this.Controls.Add(this.txtPassword);
+            this.Controls.Add(this.lblPassword);
+            this.Controls.Add(this.txtUsername);
+            this.Controls.Add(this.lblUsername);
+            this.Controls.Add(this.lblTitle);
+            this.Controls.Add(this.picLogo);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "Form2";
+            this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.RightToLeftLayout = true;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Yemen WhatsApp - تسجيل الدخول";
+            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
 
-        private void btnLogin_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void txtName_TextChanged(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
         }
 
         #endregion
 
-        private GroupBox groupBox1;
-        private TextBox txtLoginEmail;
-        private Label label2;
-        private Label label1;
-        private TextBox txtLoginPassword;
-        private TextBox txtName;
-        private Label label3;
-        private Button btnLogin;
-        private Label label4;
-        private LinkLabel linkLabel1;
+        private System.Windows.Forms.PictureBox picLogo;
+        private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.Label lblUsername;
+        private System.Windows.Forms.TextBox txtUsername;
+        private System.Windows.Forms.Label lblPassword;
+        private System.Windows.Forms.TextBox txtPassword;
+        private System.Windows.Forms.CheckBox chkRememberMe;
+        private System.Windows.Forms.Button btnLogin;
+        private System.Windows.Forms.Button btnGuest;
+        private System.Windows.Forms.Button btnRegister;
+        private System.Windows.Forms.Button btnSettings;
+        private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.Label lblVersion;
+        private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.ProgressBar progressBar;
+        private System.Windows.Forms.LinkLabel linkForgotPassword;
+        private System.Windows.Forms.LinkLabel linkHelp;
+        private System.Windows.Forms.ComboBox cmbLanguage;
+        private System.Windows.Forms.Button btnQuickLogin;
+        private System.Windows.Forms.Label lblQuickMode;
     }
 }
